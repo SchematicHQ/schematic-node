@@ -16,6 +16,8 @@ export interface PlanChangeResponseData {
     basePlanAction?: Schematic.PlanChangeBasePlanAction;
     /** The plan version that was assigned during this change. */
     basePlanVersion?: Schematic.PlanVersionSnapshotView;
+    /** The billing interval this change moved the subscription to: monthly, quarterly or yearly. Set only when the interval changed, as when a custom plan amendment's new version is priced on another interval. */
+    billingInterval?: string;
     company?: Schematic.CompanyResponseData;
     companyId: string;
     createdAt: Date;
@@ -30,6 +32,8 @@ export interface PlanChangeResponseData {
     previousBasePlan?: Schematic.PlanSnapshotView;
     /** The plan version of the previous base plan before this change. */
     previousBasePlanVersion?: Schematic.PlanVersionSnapshotView;
+    /** The billing interval the subscription was on before this change: monthly, quarterly or yearly. Set only alongside billing_interval. */
+    previousBillingInterval?: string;
     requestId?: string;
     /** If a subscription was changed as a part of this plan change, indicates the type of change that was made. */
     subscriptionChangeAction?: Schematic.PlanChangeSubscriptionAction;

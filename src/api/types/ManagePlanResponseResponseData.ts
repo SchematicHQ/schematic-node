@@ -6,5 +6,7 @@ export interface ManagePlanResponseResponseData {
     checkoutId?: string;
     company?: Schematic.CompanyDetailResponseData;
     problems: Schematic.CheckoutProblemResponseData[];
+    /** When a scheduled plan change takes effect. The company stays on its current plan until then. Empty when the change took effect straight away. */
+    scheduledChangeAt?: Date;
     success: boolean;
 }

@@ -24,6 +24,8 @@ export interface PublishPreviewResponseData {
     hasBillingChanges: boolean;
     /** What the amendment's own invoice bills, in cents, when lands_on is immediate_invoice, after discounts and tax. Includes pending invoice items Stripe adds to the same invoice. Negative for a downgrade: Stripe raises a credit invoice with nothing due, and the credit goes to the customer's balance against later invoices. */
     immediateInvoiceAmount?: number;
+    /** Set when finalizing moves the subscription to another billing interval. Stripe starts a period on the new interval when the change lands and invoices it there, so an immediate change bills the new period now and next_invoice_at is a full new period later. */
+    intervalChange?: Schematic.PublishPreviewIntervalChangeResponseData;
     landsOn: Schematic.AmendmentProrationLandsOn;
     /** What the subscription's items bill per period once the new version is in place, in cents: unit price times quantity over its licensed recurring items, before discounts and tax, the way the subscription's total_price counts its items today. Null when the change is not priced, including a change with no billing impact. */
     newRecurringAmount?: number;

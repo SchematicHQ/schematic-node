@@ -22,6 +22,7 @@ export const PlanChangeAction: core.serialization.Schema<serializers.PlanChangeA
         "plan_version_migration",
         "quickstart",
         "subscription_change",
+        "trial",
     ]);
 
 export declare namespace PlanChangeAction {
@@ -41,5 +42,6 @@ export declare namespace PlanChangeAction {
         | "plan_trait_change"
         | "plan_version_migration"
         | "quickstart"
-        | "subscription_change";
+        | "subscription_change"
+        | "trial";
 }

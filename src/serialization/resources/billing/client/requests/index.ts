@@ -7,5 +7,7 @@ export { CreateInvoiceRequestBody } from "./CreateInvoiceRequestBody";
 export { CreateMeterRequestBody } from "./CreateMeterRequestBody";
 export { CreatePaymentMethodRequestBody } from "./CreatePaymentMethodRequestBody";
 export { MarkInvoicePaidRequestBody } from "./MarkInvoicePaidRequestBody";
+export { StartCompanyTrialRequestBody } from "./StartCompanyTrialRequestBody";
 export { UpdateBillingSettingsRequestBody } from "./UpdateBillingSettingsRequestBody";
 export { UpdateCompanyBillingProfileRequestBody } from "./UpdateCompanyBillingProfileRequestBody";
+export { UpdateCompanyTrialRequestBody } from "./UpdateCompanyTrialRequestBody";

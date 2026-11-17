@@ -7,6 +7,7 @@ import { BillingPriceScheme } from "./BillingPriceScheme";
 import { BillingPriceUsageType } from "./BillingPriceUsageType";
 import { BillingProductPriceTierResponseData } from "./BillingProductPriceTierResponseData";
 import { BillingProviderType } from "./BillingProviderType";
+import { BillingTiersMode } from "./BillingTiersMode";
 import { Currency } from "./Currency";
 
 export const BillingProductForSubscriptionResponseData: core.serialization.ObjectSchema<
@@ -37,6 +38,7 @@ export const BillingProductForSubscriptionResponseData: core.serialization.Objec
         "subscription_item_external_id",
         core.serialization.string().optional(),
     ),
+    tiersMode: core.serialization.property("tiers_mode", BillingTiersMode.optional()),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
     usageType: core.serialization.property("usage_type", BillingPriceUsageType),
 });
@@ -64,6 +66,7 @@ export declare namespace BillingProductForSubscriptionResponseData {
         quantity: number;
         subscription_id: string;
         subscription_item_external_id?: string | null;
+        tiers_mode?: BillingTiersMode.Raw | null;
         updated_at: string;
         usage_type: BillingPriceUsageType.Raw;
     }

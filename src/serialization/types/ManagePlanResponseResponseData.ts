@@ -13,6 +13,7 @@ export const ManagePlanResponseResponseData: core.serialization.ObjectSchema<
     checkoutId: core.serialization.property("checkout_id", core.serialization.string().optional()),
     company: CompanyDetailResponseData.optional(),
     problems: core.serialization.list(CheckoutProblemResponseData),
+    scheduledChangeAt: core.serialization.property("scheduled_change_at", core.serialization.date().optional()),
     success: core.serialization.boolean(),
 });
 
@@ -21,6 +22,7 @@ export declare namespace ManagePlanResponseResponseData {
         checkout_id?: string | null;
         company?: CompanyDetailResponseData.Raw | null;
         problems: CheckoutProblemResponseData.Raw[];
+        scheduled_change_at?: string | null;
         success: boolean;
     }
 }

@@ -21,4 +21,8 @@ export interface BillingNativeSubscriptionResponseData {
     status: Schematic.SubscriptionStatus;
     /** The contract terms in force. Null when the company has no billing profile. */
     terms?: Schematic.BillingInvoiceTermsResponseData;
+    /** When the subscription's trial ends, or ended. Null when it never had a trial. */
+    trialEnd?: Date;
+    /** What happens when the trial ends: subscribe starts billing, cancel ends the subscription. */
+    trialEndSetting?: Schematic.BillingSubscriptionTrialEndSetting;
 }

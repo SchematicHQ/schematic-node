@@ -1,6 +1,6 @@
 {
     "name": "@schematichq/schematic-typescript-node",
-    "version": "1.6.10",
+    "version": "1.6.11",
     "private": false,
     "repository": {
         "type": "git",

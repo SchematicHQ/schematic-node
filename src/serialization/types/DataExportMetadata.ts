@@ -5,6 +5,7 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { AuditLogExportMetadata } from "./AuditLogExportMetadata";
 import { CompanyFeatureUsageExportMetadata } from "./CompanyFeatureUsageExportMetadata";
+import { CreditLedgerExportMetadata } from "./CreditLedgerExportMetadata";
 import { EventExportMetadata } from "./EventExportMetadata";
 
 export const DataExportMetadata: core.serialization.Schema<
@@ -14,6 +15,7 @@ export const DataExportMetadata: core.serialization.Schema<
     .union(core.serialization.discriminant("exportType", "export_type"), {
         "audit-log": AuditLogExportMetadata,
         "company-feature-usage": CompanyFeatureUsageExportMetadata,
+        "credit-ledger": CreditLedgerExportMetadata,
         event: EventExportMetadata,
     })
     .transform<Schematic.DataExportMetadata>({
@@ -22,7 +24,11 @@ export const DataExportMetadata: core.serialization.Schema<
     });
 
 export declare namespace DataExportMetadata {
-    export type Raw = DataExportMetadata.AuditLog | DataExportMetadata.CompanyFeatureUsage | DataExportMetadata.Event;
+    export type Raw =
+        | DataExportMetadata.AuditLog
+        | DataExportMetadata.CompanyFeatureUsage
+        | DataExportMetadata.CreditLedger
+        | DataExportMetadata.Event;
 
     export interface AuditLog extends AuditLogExportMetadata.Raw {
         export_type: "audit-log";
@@ -30,6 +36,10 @@ export declare namespace DataExportMetadata {
 
     export interface CompanyFeatureUsage extends CompanyFeatureUsageExportMetadata.Raw {
         export_type: "company-feature-usage";
+    }
+
+    export interface CreditLedger extends CreditLedgerExportMetadata.Raw {
+        export_type: "credit-ledger";
     }
 
     export interface Event extends EventExportMetadata.Raw {

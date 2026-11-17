@@ -12,6 +12,10 @@ export const CheckoutDataRequestBody: core.serialization.Schema<
     companyId: core.serialization.property("company_id", core.serialization.string()),
     currency: Currency.optional(),
     selectedPlanId: core.serialization.property("selected_plan_id", core.serialization.string().optional()),
+    selectedPlanVersionId: core.serialization.property(
+        "selected_plan_version_id",
+        core.serialization.string().optional(),
+    ),
 });
 
 export declare namespace CheckoutDataRequestBody {
@@ -19,5 +23,6 @@ export declare namespace CheckoutDataRequestBody {
         company_id: string;
         currency?: Currency.Raw | null;
         selected_plan_id?: string | null;
+        selected_plan_version_id?: string | null;
     }
 }

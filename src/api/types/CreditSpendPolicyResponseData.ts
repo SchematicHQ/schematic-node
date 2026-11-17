@@ -6,15 +6,15 @@ export interface CreditSpendPolicyResponseData {
     billingCreditId: string;
     /** The company the policy applies in */
     companyId?: string;
-    /** Credits spent in the current window. Set only by the usage route, and only for a window cap. */
+    /** Credits spent in the current window. Set only by the routes that read usage, and only for a window cap. */
     consumed?: number;
     createdAt: Date;
-    /** Credits left in the current window. Set only by the usage route, and only for a window cap. */
+    /** Credits left in the current window. Set only by the routes that read usage, and only for a window cap. */
     headroom?: number;
     id: string;
     label?: string;
     maxPerDraw?: number;
-    /** When the current window ends. Set only by the usage route, and only for a window cap. */
+    /** When the current window ends. Set only by the routes that read usage, and only for a window cap. */
     resetsAt?: Date;
     scopeType: Schematic.CreditSpendPolicyScope;
     updatedAt: Date;

@@ -858,6 +858,7 @@ describe("BillingClient", () => {
                         {
                             currency: "aed",
                             interval: "interval",
+                            interval_count: 1000000,
                             metered_usage: true,
                             per_unit_price: 1000000,
                             total_price: 1000000,
@@ -900,6 +901,7 @@ describe("BillingClient", () => {
                         {
                             currency: "aed",
                             interval: "interval",
+                            intervalCount: 1000000,
                             meteredUsage: true,
                             perUnitPrice: 1000000,
                             totalPrice: 1000000,
@@ -5562,6 +5564,8 @@ describe("BillingClient", () => {
                     payment_gating: "keep_serving",
                     purchase_order: "purchase_order",
                 },
+                trial_end: "2024-01-15T09:30:00Z",
+                trial_end_setting: "cancel",
             },
             params: { key: "value" },
         };
@@ -5638,6 +5642,8 @@ describe("BillingClient", () => {
                     paymentGating: "keep_serving",
                     purchaseOrder: "purchase_order",
                 },
+                trialEnd: new Date("2024-01-15T09:30:00.000Z"),
+                trialEndSetting: "cancel",
             },
             params: {
                 key: "value",
@@ -5843,6 +5849,762 @@ describe("BillingClient", () => {
 
         await expect(async () => {
             return await client.billing.moveToDefaultPlan("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("getCompanyTrial (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                end_behavior: "cancel",
+                ended_at: "2024-01-15T09:30:00Z",
+                ends_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
+                source: "api",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                subscription_id: "subscription_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/trial")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.getCompanyTrial("company_id");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                endBehavior: "cancel",
+                endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                endsAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                planId: "plan_id",
+                planVersionId: "plan_version_id",
+                source: "api",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                subscriptionId: "subscription_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getCompanyTrial (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/trial")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getCompanyTrial (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/trial")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getCompanyTrial (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/trial")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getCompanyTrial (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/companies/company_id/trial")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.getCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("startCompanyTrial (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                end_behavior: "cancel",
+                ended_at: "2024-01-15T09:30:00Z",
+                ends_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
+                source: "api",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                subscription_id: "subscription_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.startCompanyTrial("company_id", {
+            cadence: "day",
+            planId: "plan_id",
+        });
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                endBehavior: "cancel",
+                endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                endsAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                planId: "plan_id",
+                planVersionId: "plan_version_id",
+                source: "api",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                subscriptionId: "subscription_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("startCompanyTrial (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.startCompanyTrial("company_id", {
+                cadence: "day",
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("startCompanyTrial (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.startCompanyTrial("company_id", {
+                cadence: "day",
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("startCompanyTrial (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.startCompanyTrial("company_id", {
+                cadence: "day",
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("startCompanyTrial (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.startCompanyTrial("company_id", {
+                cadence: "day",
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("startCompanyTrial (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { cadence: "day", plan_id: "plan_id" };
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.startCompanyTrial("company_id", {
+                cadence: "day",
+                planId: "plan_id",
+            });
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("updateCompanyTrial (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                end_behavior: "cancel",
+                ended_at: "2024-01-15T09:30:00Z",
+                ends_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
+                source: "api",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                subscription_id: "subscription_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.updateCompanyTrial("company_id");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                endBehavior: "cancel",
+                endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                endsAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                planId: "plan_id",
+                planVersionId: "plan_version_id",
+                source: "api",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                subscriptionId: "subscription_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("updateCompanyTrial (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("updateCompanyTrial (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("updateCompanyTrial (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("updateCompanyTrial (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("updateCompanyTrial (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .put("/companies/company_id/trial")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.updateCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("convertCompanyTrial (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                end_behavior: "cancel",
+                ended_at: "2024-01-15T09:30:00Z",
+                ends_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
+                source: "api",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                subscription_id: "subscription_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.convertCompanyTrial("company_id");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                endBehavior: "cancel",
+                endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                endsAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                planId: "plan_id",
+                planVersionId: "plan_version_id",
+                source: "api",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                subscriptionId: "subscription_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("convertCompanyTrial (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.convertCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("convertCompanyTrial (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.convertCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("convertCompanyTrial (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.convertCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("convertCompanyTrial (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.convertCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("convertCompanyTrial (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/convert")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.convertCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
+
+    test("endCompanyTrial (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                company_id: "company_id",
+                created_at: "2024-01-15T09:30:00Z",
+                end_behavior: "cancel",
+                ended_at: "2024-01-15T09:30:00Z",
+                ends_at: "2024-01-15T09:30:00Z",
+                id: "id",
+                plan_id: "plan_id",
+                plan_version_id: "plan_version_id",
+                source: "api",
+                started_at: "2024-01-15T09:30:00Z",
+                status: "active",
+                subscription_id: "subscription_id",
+                updated_at: "2024-01-15T09:30:00Z",
+            },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.billing.endCompanyTrial("company_id");
+        expect(response).toEqual({
+            data: {
+                companyId: "company_id",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                endBehavior: "cancel",
+                endedAt: new Date("2024-01-15T09:30:00.000Z"),
+                endsAt: new Date("2024-01-15T09:30:00.000Z"),
+                id: "id",
+                planId: "plan_id",
+                planVersionId: "plan_version_id",
+                source: "api",
+                startedAt: new Date("2024-01-15T09:30:00.000Z"),
+                status: "active",
+                subscriptionId: "subscription_id",
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("endCompanyTrial (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.endCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.BadRequestError);
+    });
+
+    test("endCompanyTrial (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.endCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("endCompanyTrial (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.endCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("endCompanyTrial (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.endCompanyTrial("company_id");
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("endCompanyTrial (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .post("/companies/company_id/trial/end")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.billing.endCompanyTrial("company_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
 

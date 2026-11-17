@@ -8,6 +8,8 @@ export interface WebScheduledDowngradeWebhookOutput {
     fromPlan?: Schematic.PlanSnapshotView;
     id: string;
     scheduledInterval?: string;
+    /** With scheduled_interval, the scheduled price's billing period: 3 with month is quarterly. Null for a downgrade scheduled before the price was recorded. */
+    scheduledIntervalCount?: number;
     scheduledPrice?: number;
     toPlan?: Schematic.PlanSnapshotView;
 }

@@ -30,6 +30,7 @@ import type * as Schematic from "../../../../index";
  */
 export interface CreateBillingSubscriptionRequestBody {
     applicationId?: string;
+    billingCycleAnchor?: Date;
     cancelAt?: number;
     cancelAtPeriodEnd: boolean;
     companyId?: string;

@@ -12,4 +12,5 @@ export interface CheckoutDataRequestBody {
     companyId: string;
     currency?: Schematic.Currency;
     selectedPlanId?: string;
+    selectedPlanVersionId?: string;
 }

@@ -10,7 +10,11 @@ export interface ScheduledDowngradeResponseData {
     fromSubscriptionPrice: number;
     id: string;
     interval: string;
+    /** With interval, the current subscription's billing period: 3 with month is quarterly. */
+    intervalCount: number;
     scheduledInterval?: string;
+    /** With scheduled_interval, the scheduled price's billing period: 3 with month is quarterly. Null for a downgrade scheduled before the price was recorded. */
+    scheduledIntervalCount?: number;
     scheduledPrice?: number;
     toPlanId: string;
     toPlanName: string;

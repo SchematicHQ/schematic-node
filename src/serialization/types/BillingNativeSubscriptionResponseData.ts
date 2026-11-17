@@ -7,6 +7,7 @@ import { BillingInvoiceTermsResponseData } from "./BillingInvoiceTermsResponseDa
 import { BillingNativeSubscriptionChangeResponseData } from "./BillingNativeSubscriptionChangeResponseData";
 import { BillingNativeSubscriptionLineResponseData } from "./BillingNativeSubscriptionLineResponseData";
 import { BillingStatementResponseData } from "./BillingStatementResponseData";
+import { BillingSubscriptionTrialEndSetting } from "./BillingSubscriptionTrialEndSetting";
 import { Currency } from "./Currency";
 import { SubscriptionStatus } from "./SubscriptionStatus";
 
@@ -30,6 +31,8 @@ export const BillingNativeSubscriptionResponseData: core.serialization.ObjectSch
     statement: BillingStatementResponseData.optional(),
     status: SubscriptionStatus,
     terms: BillingInvoiceTermsResponseData.optional(),
+    trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
+    trialEndSetting: core.serialization.property("trial_end_setting", BillingSubscriptionTrialEndSetting.optional()),
 });
 
 export declare namespace BillingNativeSubscriptionResponseData {
@@ -47,5 +50,7 @@ export declare namespace BillingNativeSubscriptionResponseData {
         statement?: BillingStatementResponseData.Raw | null;
         status: SubscriptionStatus.Raw;
         terms?: BillingInvoiceTermsResponseData.Raw | null;
+        trial_end?: string | null;
+        trial_end_setting?: BillingSubscriptionTrialEndSetting.Raw | null;
     }
 }

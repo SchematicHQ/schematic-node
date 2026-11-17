@@ -17,5 +17,6 @@ export const PlanChangeAction = {
     PlanVersionMigration: "plan_version_migration",
     Quickstart: "quickstart",
     SubscriptionChange: "subscription_change",
+    Trial: "trial",
 } as const;
 export type PlanChangeAction = (typeof PlanChangeAction)[keyof typeof PlanChangeAction];
