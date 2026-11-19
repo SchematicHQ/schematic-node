@@ -1358,6 +1358,66 @@ describe('DataStreamClient', () => {
       const metric = (bySlug as any).metrics.find((m: any) => m.eventSubtype === 'api-call');
       expect(metric.value).toBe(15);
     });
+
+    describe('updateCompanyMetrics cache writes', () => {
+      const companyWithMetrics = {
+        ...multiKeyCompany,
+        metrics: [
+          {
+            account_id: 'account-123',
+            company_id: 'company-multi',
+            created_at: '2026-01-01T00:00:00Z',
+            environment_id: 'env-123',
+            event_subtype: 'api-call',
+            month_reset: 'first_of_month',
+            period: 'all_time',
+            value: 10,
+          },
+        ],
+      } as unknown as Schematic.RulesengineCompany;
+
+      let companyCache: LocalCache<Schematic.RulesengineCompany>;
+      let metricsClient: DataStreamClient;
+
+      beforeEach(async () => {
+        companyCache = new LocalCache<Schematic.RulesengineCompany>();
+        metricsClient = new DataStreamClient({ ...options, companyCache });
+        await metricsClient.start();
+        const DatastreamWSClientMock = DatastreamWSClient as jest.MockedClass<typeof DatastreamWSClient>;
+        const calls = DatastreamWSClientMock.mock.calls;
+        await calls[calls.length - 1][0].messageHandler({
+          entity_type: EntityType.COMPANY,
+          message_type: MessageType.FULL,
+          data: companyWithMetrics,
+        });
+      });
+
+      afterEach(async () => {
+        metricsClient.removeAllListeners();
+        metricsClient.close();
+        await new Promise(resolve => setImmediate(resolve));
+      });
+
+      test('should not write to the cache when no metric matches the event', async () => {
+        const setSpy = jest.spyOn(companyCache, 'set');
+
+        await metricsClient.updateCompanyMetrics({ name: 'acme' }, 'unmetered-event', 5);
+
+        expect(setSpy).not.toHaveBeenCalled();
+        const company = await metricsClient.getCompany({ name: 'acme' });
+        expect(company.metrics?.[0]?.value).toBe(10);
+      });
+
+      test('should write to the cache when a metric matches the event', async () => {
+        const setSpy = jest.spyOn(companyCache, 'set');
+
+        await metricsClient.updateCompanyMetrics({ name: 'acme' }, 'api-call', 5);
+
+        expect(setSpy).toHaveBeenCalledTimes(1);
+        const company = await metricsClient.getCompany({ name: 'acme' });
+        expect(company.metrics?.[0]?.value).toBe(15);
+      });
+    });
   });
 
   describe('evaluateFlag entitlement population', () => {

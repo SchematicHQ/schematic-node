@@ -584,6 +584,7 @@ export class DataStreamClient extends LazyEmitter {
     const updatedCompany = this.deepCopyCompany(company);
 
     // Update the metric value if it matches the event
+    let matched = false;
     if (updatedCompany.metrics) {
       for (const metric of updatedCompany.metrics) {
         // Cache data may use snake_case (wire) or camelCase (Fern) for multi-word keys
@@ -591,8 +592,13 @@ export class DataStreamClient extends LazyEmitter {
           ?? (metric as unknown as Record<string, unknown>)['event_subtype'];
         if (eventSubtype === event) {
           metric.value = (metric.value || 0) + quantity;
+          matched = true;
         }
       }
+    }
+
+    if (!matched) {
+      return;
     }
 
     // The replicator owns these keys and their expiry (none by default), so
