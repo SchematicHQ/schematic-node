@@ -157,6 +157,19 @@ describe("track in replicator mode when the replicator is not ready", () => {
         expect(logger.error).not.toHaveBeenCalled();
     });
 
+    it("adds nothing to the cached company metric for a quantity of 0", async () => {
+        await client.track({ event: "api_call", company: { name: "Acme" }, quantity: 0 });
+
+        expect(await cachedMetricValue()).toBe(3);
+        expect(logger.error).not.toHaveBeenCalled();
+    });
+
+    it("adds 1 to the cached company metric when the quantity is omitted", async () => {
+        await client.track({ event: "api_call", company: { name: "Acme" } });
+
+        expect(await cachedMetricValue()).toBe(4);
+    });
+
     it("keeps the expiry the replicator gave each key", async () => {
         // The replicator writes keys with no expiry by default; one configured
         // with a TTL sets one. A bump must leave both as they were.
