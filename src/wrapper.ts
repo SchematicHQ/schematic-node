@@ -1509,7 +1509,7 @@ export class SchematicClient extends BaseClient {
             // it, so it cannot double count.
             if (updateMetrics && body.company && this.useDataStream()) {
                 try {
-                    await this.datastreamClient!.updateCompanyMetrics(body.company, body.event, body.quantity || 1);
+                    await this.datastreamClient!.updateCompanyMetrics(body.company, body.event, body.quantity ?? 1);
                 } catch (err) {
                     this.logger.error(`Failed to update company metrics: ${err}`);
                 }
