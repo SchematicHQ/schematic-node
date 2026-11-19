@@ -1408,6 +1408,16 @@ describe('DataStreamClient', () => {
         expect(company.metrics?.[0]?.value).toBe(10);
       });
 
+      test('should not write to the cache when a matching event has a quantity of 0', async () => {
+        const setSpy = jest.spyOn(companyCache, 'set');
+
+        await metricsClient.updateCompanyMetrics({ name: 'acme' }, 'api-call', 0);
+
+        expect(setSpy).not.toHaveBeenCalled();
+        const company = await metricsClient.getCompany({ name: 'acme' });
+        expect(company.metrics?.[0]?.value).toBe(10);
+      });
+
       test('should write to the cache when a metric matches the event', async () => {
         const setSpy = jest.spyOn(companyCache, 'set');
 

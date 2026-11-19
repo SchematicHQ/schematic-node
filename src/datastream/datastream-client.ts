@@ -575,6 +575,10 @@ export class DataStreamClient extends LazyEmitter {
    * UpdateCompanyMetrics updates company metrics locally (for track events)
    */
   public async updateCompanyMetrics(keys: Record<string, string>, event: string, quantity: number): Promise<void> {
+    if (quantity === 0) {
+      return;
+    }
+
     const company = await this.getCompanyFromCache(keys);
     if (!company) {
       return; // No company in cache to update
