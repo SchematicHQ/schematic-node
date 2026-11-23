@@ -9,6 +9,8 @@ export interface CountAuditLogsParams {
     actorType?: Schematic.ActorType;
     companyId?: string;
     endTime?: Date;
+    /** Only entries made with a temporary access token issued for this user */
+    endUserId?: string;
     environmentId?: string;
     /** Page limit (default 100) */
     limit?: number;

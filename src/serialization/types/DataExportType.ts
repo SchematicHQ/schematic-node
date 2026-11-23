@@ -5,8 +5,15 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const DataExportType: core.serialization.Schema<serializers.DataExportType.Raw, Schematic.DataExportType> =
-    core.serialization.enum_(["audit-log", "company-feature-usage", "credit-ledger", "event"]);
+    core.serialization.enum_([
+        "audit-log",
+        "company-feature-usage",
+        "credit-balance",
+        "credit-ledger",
+        "event",
+        "user",
+    ]);
 
 export declare namespace DataExportType {
-    export type Raw = "audit-log" | "company-feature-usage" | "credit-ledger" | "event";
+    export type Raw = "audit-log" | "company-feature-usage" | "credit-balance" | "credit-ledger" | "event" | "user";
 }

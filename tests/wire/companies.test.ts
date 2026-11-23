@@ -9167,6 +9167,7 @@ describe("CompaniesClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    interval_count: 1000000,
                     is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
@@ -9270,6 +9271,7 @@ describe("CompaniesClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    intervalCount: 1000000,
                     isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,
@@ -9921,6 +9923,7 @@ describe("CompaniesClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    interval_count: 1000000,
                     is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
@@ -10019,6 +10022,7 @@ describe("CompaniesClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    intervalCount: 1000000,
                     isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,
@@ -13241,6 +13245,8 @@ describe("CompaniesClient", () => {
                     api_key_id: "api_key_id",
                     company: { id: "id", name: "name" },
                     company_id: "company_id",
+                    end_user: { id: "id", name: "name" },
+                    end_user_id: "end_user_id",
                     ended_at: "2024-01-15T09:30:00Z",
                     environment: {
                         created_at: "2024-01-15T09:30:00Z",
@@ -13387,6 +13393,11 @@ describe("CompaniesClient", () => {
                         name: "name",
                     },
                     companyId: "company_id",
+                    endUser: {
+                        id: "id",
+                        name: "name",
+                    },
+                    endUserId: "end_user_id",
                     endedAt: new Date("2024-01-15T09:30:00.000Z"),
                     environment: {
                         createdAt: new Date("2024-01-15T09:30:00.000Z"),

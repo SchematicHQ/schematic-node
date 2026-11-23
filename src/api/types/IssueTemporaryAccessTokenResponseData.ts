@@ -12,4 +12,6 @@ export interface IssueTemporaryAccessTokenResponseData {
     resourceType: Schematic.TemporaryAccessTokenResourceType;
     token: string;
     updatedAt: Date;
+    /** The user the token was issued for, when the request named one in user_lookup. */
+    userId?: string;
 }

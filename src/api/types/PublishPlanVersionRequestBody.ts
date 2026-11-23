@@ -22,7 +22,7 @@ export interface PublishPlanVersionRequestBody {
     customerEmail?: string;
     /** Payment terms in days. On a custom-plan republish they apply to the amendment invoice only, leave the subscription's renewal terms unchanged, and are only used when that invoice is raised today and sent rather than charged. Defaults to the subscription's terms. */
     daysUntilDue?: number;
-    /** When a custom plan that doesn't renew ends: the company moves to the default plan then, and no renewal invoice is raised. Required when the version's renewal_policy is expire_to_default, and refused otherwise. Moved back to the last renewal on or before it, which must leave at least one whole billing period. Only honored on a first publish that starts a subscription. */
+    /** When a custom plan that doesn't renew ends: the subscription is canceled, the company moves to the fallback plan, and no renewal invoice is raised. Required when the version's renewal_policy is expire_to_default, and refused otherwise. Moved back to the last renewal on or before it, which must leave at least one whole billing period. Only honored on a first publish that starts a subscription. */
     endDate?: Date;
     excludedCompanyIds: string[];
     /** With payment_gating revoke_after, how many days past due an invoice may go before the company loses the plan. 0 revokes at once. Only applies when Schematic bills the company. Applies to the company's contract and never creates a plan version. Omitted keeps the contract's setting. */

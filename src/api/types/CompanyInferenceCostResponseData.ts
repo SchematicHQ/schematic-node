@@ -3,7 +3,7 @@
 import type * as Schematic from "../index";
 
 export interface CompanyInferenceCostResponseData {
-    /** Cost and event counts per provider and response model, busiest model first */
+    /** Cost and event counts per provider and response model, busiest model first, for at most the 500 busiest models; the totals count every model */
     byModel: Schematic.InferenceModelCostResponseData[];
     /** The company the cost belongs to */
     companyId: string;

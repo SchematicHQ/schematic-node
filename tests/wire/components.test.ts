@@ -2228,6 +2228,7 @@ describe("ComponentsClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    interval_count: 1000000,
                     is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
@@ -3815,6 +3816,7 @@ describe("ComponentsClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    intervalCount: 1000000,
                     isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,

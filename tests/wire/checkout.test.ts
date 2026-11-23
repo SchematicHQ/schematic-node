@@ -1658,6 +1658,7 @@ describe("CheckoutClient", () => {
                     ],
                     expired_at: "2024-01-15T09:30:00Z",
                     interval: "interval",
+                    interval_count: 1000000,
                     is_initial: true,
                     latest_invoice: {
                         amount_due: 1000000,
@@ -2915,6 +2916,7 @@ describe("CheckoutClient", () => {
                     ],
                     expiredAt: new Date("2024-01-15T09:30:00.000Z"),
                     interval: "interval",
+                    intervalCount: 1000000,
                     isInitial: true,
                     latestInvoice: {
                         amountDue: 1000000,
@@ -3169,6 +3171,7 @@ describe("CheckoutClient", () => {
                 promo_code_applied: true,
                 proration: 1000000,
                 scheduled_change_time: "2024-01-15T09:30:00Z",
+                unbilled_usage_feature_ids: ["unbilled_usage_feature_ids"],
                 usage_violations: [
                     {
                         access: true,
@@ -3298,6 +3301,7 @@ describe("CheckoutClient", () => {
                 promoCodeApplied: true,
                 proration: 1000000,
                 scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
+                unbilledUsageFeatureIds: ["unbilled_usage_feature_ids"],
                 usageViolations: [
                     {
                         access: true,
@@ -5429,6 +5433,7 @@ describe("CheckoutClient", () => {
                     promo_code_applied: true,
                     proration: 1000000,
                     scheduled_change_time: "2024-01-15T09:30:00Z",
+                    unbilled_usage_feature_ids: ["unbilled_usage_feature_ids"],
                     usage_violations: [
                         {
                             access: true,
@@ -5542,6 +5547,7 @@ describe("CheckoutClient", () => {
                     promoCodeApplied: true,
                     proration: 1000000,
                     scheduledChangeTime: new Date("2024-01-15T09:30:00.000Z"),
+                    unbilledUsageFeatureIds: ["unbilled_usage_feature_ids"],
                     usageViolations: [
                         {
                             access: true,

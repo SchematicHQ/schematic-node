@@ -9,5 +9,8 @@
  *     }
  */
 export interface IssueTemporaryAccessTokenRequestBody {
+    /** Key-value pairs that identify the company the token is for, such as {"id": "your-company-id"}. */
     lookup: Record<string, string>;
+    /** Optional key-value pairs that identify the user of your app the token is for, such as {"email": "user@example.com"}. The user must belong to the company named by lookup. Writes made with the token are attributed to this user in the audit log; the token's access is the same either way. */
+    userLookup?: Record<string, string>;
 }

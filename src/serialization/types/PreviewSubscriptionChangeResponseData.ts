@@ -27,6 +27,10 @@ export const PreviewSubscriptionChangeResponseData: core.serialization.ObjectSch
     proration: core.serialization.number(),
     scheduledChangeTime: core.serialization.property("scheduled_change_time", core.serialization.date().optional()),
     trialEnd: core.serialization.property("trial_end", core.serialization.date().optional()),
+    unbilledUsageFeatureIds: core.serialization.property(
+        "unbilled_usage_feature_ids",
+        core.serialization.list(core.serialization.string()),
+    ),
     usageViolations: core.serialization.property("usage_violations", core.serialization.list(FeatureUsageResponseData)),
 });
 
@@ -48,6 +52,7 @@ export declare namespace PreviewSubscriptionChangeResponseData {
         proration: number;
         scheduled_change_time?: string | null;
         trial_end?: string | null;
+        unbilled_usage_feature_ids: string[];
         usage_violations: FeatureUsageResponseData.Raw[];
     }
 }

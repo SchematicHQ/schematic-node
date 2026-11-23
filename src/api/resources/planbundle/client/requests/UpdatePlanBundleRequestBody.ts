@@ -19,5 +19,7 @@ export interface UpdatePlanBundleRequestBody {
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
     plan: Schematic.UpdatePlanRequestBody;
     planVersionId?: string;
+    /** Where the company moves at term end when the version's renewal_policy is migrate_to_plan. Left out, the version keeps the destination it has; refused for any other policy. */
+    renewalDestination?: Schematic.RenewalDestinationRequestBody;
     renewalPolicy?: Schematic.RenewalPolicy;
 }

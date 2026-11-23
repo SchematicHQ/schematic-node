@@ -5,8 +5,10 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 import { AuditLogExportMetadata } from "./AuditLogExportMetadata";
 import { CompanyFeatureUsageExportMetadata } from "./CompanyFeatureUsageExportMetadata";
+import { CreditBalanceExportMetadata } from "./CreditBalanceExportMetadata";
 import { CreditLedgerExportMetadata } from "./CreditLedgerExportMetadata";
 import { EventExportMetadata } from "./EventExportMetadata";
+import { UserExportMetadata } from "./UserExportMetadata";
 
 export const DataExportMetadata: core.serialization.Schema<
     serializers.DataExportMetadata.Raw,
@@ -15,8 +17,10 @@ export const DataExportMetadata: core.serialization.Schema<
     .union(core.serialization.discriminant("exportType", "export_type"), {
         "audit-log": AuditLogExportMetadata,
         "company-feature-usage": CompanyFeatureUsageExportMetadata,
+        "credit-balance": CreditBalanceExportMetadata,
         "credit-ledger": CreditLedgerExportMetadata,
         event: EventExportMetadata,
+        user: UserExportMetadata,
     })
     .transform<Schematic.DataExportMetadata>({
         transform: (value) => value,
@@ -27,8 +31,10 @@ export declare namespace DataExportMetadata {
     export type Raw =
         | DataExportMetadata.AuditLog
         | DataExportMetadata.CompanyFeatureUsage
+        | DataExportMetadata.CreditBalance
         | DataExportMetadata.CreditLedger
-        | DataExportMetadata.Event;
+        | DataExportMetadata.Event
+        | DataExportMetadata.User;
 
     export interface AuditLog extends AuditLogExportMetadata.Raw {
         export_type: "audit-log";
@@ -38,11 +44,19 @@ export declare namespace DataExportMetadata {
         export_type: "company-feature-usage";
     }
 
+    export interface CreditBalance extends CreditBalanceExportMetadata.Raw {
+        export_type: "credit-balance";
+    }
+
     export interface CreditLedger extends CreditLedgerExportMetadata.Raw {
         export_type: "credit-ledger";
     }
 
     export interface Event extends EventExportMetadata.Raw {
         export_type: "event";
+    }
+
+    export interface User extends UserExportMetadata.Raw {
+        export_type: "user";
     }
 }

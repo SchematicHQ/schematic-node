@@ -3,6 +3,7 @@ export * from "./ClaimStripeSandboxKeysResponse";
 export * from "./GetIntegrationWebhookUrlResponse";
 export * from "./GetStripeSandboxClaimLinkResponse";
 export * from "./GetStripeSandboxKeysResponse";
+export * from "./GetZuoraConnectionHealthResponse";
 export * from "./InstallIntegrationResponse";
 export * from "./InstallStripeClaimableSandboxResponse";
 export * from "./InstallStripeResponse";

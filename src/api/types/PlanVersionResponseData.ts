@@ -11,6 +11,8 @@ export interface PlanVersionResponseData {
     name: string;
     originalPlanId?: string;
     planType: Schematic.PlanType;
+    /** Where the company moves at term end when renewal_policy is migrate_to_plan. Null for any other policy. */
+    renewalDestination?: Schematic.RenewalDestinationResponseData;
     renewalPolicy: Schematic.RenewalPolicy;
     status: Schematic.PlanVersionStatus;
     updatedAt: Date;

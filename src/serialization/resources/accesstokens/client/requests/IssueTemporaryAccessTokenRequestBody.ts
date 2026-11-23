@@ -9,10 +9,15 @@ export const IssueTemporaryAccessTokenRequestBody: core.serialization.Schema<
     Schematic.IssueTemporaryAccessTokenRequestBody
 > = core.serialization.object({
     lookup: core.serialization.record(core.serialization.string(), core.serialization.string()),
+    userLookup: core.serialization.property(
+        "user_lookup",
+        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+    ),
 });
 
 export declare namespace IssueTemporaryAccessTokenRequestBody {
     export interface Raw {
         lookup: Record<string, string>;
+        user_lookup?: Record<string, string> | null;
     }
 }

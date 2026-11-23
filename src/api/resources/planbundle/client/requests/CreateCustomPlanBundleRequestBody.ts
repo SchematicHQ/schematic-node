@@ -23,5 +23,7 @@ export interface CreateCustomPlanBundleRequestBody {
     creditGrants?: Schematic.PlanBundleCreditGrantRequestBody[];
     entitlements: Schematic.PlanBundleEntitlementRequestBody[];
     plan: Schematic.CreateCustomPlanBundlePlanRequestBody;
+    /** Where the company moves at term end when renewal_policy is migrate_to_plan. Required for that policy and refused for any other. */
+    renewalDestination?: Schematic.RenewalDestinationRequestBody;
     renewalPolicy?: Schematic.RenewalPolicy;
 }

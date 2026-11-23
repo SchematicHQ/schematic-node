@@ -15,7 +15,7 @@ export interface CustomPlanBillingResponseData {
     companyId: string;
     createdAt: Date;
     daysUntilDue: number;
-    /** When a custom plan that doesn't renew ends: the renewal the subscription stops on and the company moves to the default plan. Null for a plan that renews. */
+    /** When a custom plan that doesn't renew ends: the renewal the subscription stops on and the company moves to the fallback plan. Null for a plan that renews. */
     endDate?: Date;
     externalInvoiceId?: string;
     id: string;
