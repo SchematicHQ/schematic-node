@@ -24,6 +24,7 @@ export const PublishPreviewResponseData: core.serialization.ObjectSchema<
     defaultCollectionMethod: core.serialization.property("default_collection_method", BillingCollectionMethod),
     defaultDaysUntilDue: core.serialization.property("default_days_until_due", core.serialization.number()),
     defaultSendInvoice: core.serialization.property("default_send_invoice", core.serialization.boolean()),
+    earliestEndDate: core.serialization.property("earliest_end_date", core.serialization.date().optional()),
     effectiveAt: core.serialization.property("effective_at", core.serialization.date().optional()),
     endsAt: core.serialization.property("ends_at", core.serialization.date().optional()),
     hasBillingChanges: core.serialization.property("has_billing_changes", core.serialization.boolean()),
@@ -64,6 +65,7 @@ export declare namespace PublishPreviewResponseData {
         default_collection_method: BillingCollectionMethod.Raw;
         default_days_until_due: number;
         default_send_invoice: boolean;
+        earliest_end_date?: string | null;
         effective_at?: string | null;
         ends_at?: string | null;
         has_billing_changes: boolean;

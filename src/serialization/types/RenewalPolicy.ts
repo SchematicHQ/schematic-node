@@ -5,8 +5,8 @@ import * as core from "../../core";
 import type * as serializers from "../index";
 
 export const RenewalPolicy: core.serialization.Schema<serializers.RenewalPolicy.Raw, Schematic.RenewalPolicy> =
-    core.serialization.enum_(["auto_renew", "expire_to_default", "hold_with_grace"]);
+    core.serialization.enum_(["auto_renew", "expire_to_default", "hold_with_grace", "migrate_to_plan"]);
 
 export declare namespace RenewalPolicy {
-    export type Raw = "auto_renew" | "expire_to_default" | "hold_with_grace";
+    export type Raw = "auto_renew" | "expire_to_default" | "hold_with_grace" | "migrate_to_plan";
 }

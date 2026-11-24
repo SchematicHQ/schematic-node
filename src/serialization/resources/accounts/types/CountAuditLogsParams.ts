@@ -12,6 +12,7 @@ export const CountAuditLogsParams: core.serialization.ObjectSchema<
     actorType: core.serialization.property("actor_type", ActorType.optional()),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
     endTime: core.serialization.property("end_time", core.serialization.date().optional()),
+    endUserId: core.serialization.property("end_user_id", core.serialization.string().optional()),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
     limit: core.serialization.number().optional(),
     offset: core.serialization.number().optional(),
@@ -24,6 +25,7 @@ export declare namespace CountAuditLogsParams {
         actor_type?: ActorType.Raw | null;
         company_id?: string | null;
         end_time?: string | null;
+        end_user_id?: string | null;
         environment_id?: string | null;
         limit?: number | null;
         offset?: number | null;

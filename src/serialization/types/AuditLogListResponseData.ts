@@ -6,6 +6,7 @@ import type * as serializers from "../index";
 import { ActorType } from "./ActorType";
 import { ApiKeyResponseData } from "./ApiKeyResponseData";
 import { AuditLogCompanyResponseData } from "./AuditLogCompanyResponseData";
+import { AuditLogEndUserResponseData } from "./AuditLogEndUserResponseData";
 import { EnvironmentResponseData } from "./EnvironmentResponseData";
 
 export const AuditLogListResponseData: core.serialization.ObjectSchema<
@@ -17,6 +18,8 @@ export const AuditLogListResponseData: core.serialization.ObjectSchema<
     apiKeyId: core.serialization.property("api_key_id", core.serialization.string().optional()),
     company: AuditLogCompanyResponseData.optional(),
     companyId: core.serialization.property("company_id", core.serialization.string().optional()),
+    endUser: core.serialization.property("end_user", AuditLogEndUserResponseData.optional()),
+    endUserId: core.serialization.property("end_user_id", core.serialization.string().optional()),
     endedAt: core.serialization.property("ended_at", core.serialization.date().optional()),
     environment: EnvironmentResponseData.optional(),
     environmentId: core.serialization.property("environment_id", core.serialization.string().optional()),
@@ -40,6 +43,8 @@ export declare namespace AuditLogListResponseData {
         api_key_id?: string | null;
         company?: AuditLogCompanyResponseData.Raw | null;
         company_id?: string | null;
+        end_user?: AuditLogEndUserResponseData.Raw | null;
+        end_user_id?: string | null;
         ended_at?: string | null;
         environment?: EnvironmentResponseData.Raw | null;
         environment_id?: string | null;

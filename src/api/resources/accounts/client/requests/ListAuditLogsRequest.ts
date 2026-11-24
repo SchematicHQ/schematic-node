@@ -8,6 +8,7 @@ import type * as Schematic from "../../../../index";
  *         actorType: "api_key",
  *         companyId: "company_id",
  *         endTime: new Date("2024-01-15T09:30:00.000Z"),
+ *         endUserId: "end_user_id",
  *         environmentId: "environment_id",
  *         q: "q",
  *         startTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -19,6 +20,8 @@ export interface ListAuditLogsRequest {
     actorType?: Schematic.ActorType;
     companyId?: string;
     endTime?: Date;
+    /** Only entries made with a temporary access token issued for this user */
+    endUserId?: string;
     environmentId?: string;
     q?: string;
     startTime?: Date;

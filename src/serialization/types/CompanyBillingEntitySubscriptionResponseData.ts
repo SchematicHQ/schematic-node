@@ -24,6 +24,7 @@ export const CompanyBillingEntitySubscriptionResponseData: core.serialization.Ob
     discounts: core.serialization.list(BillingSubscriptionDiscountView),
     expiredAt: core.serialization.property("expired_at", core.serialization.date().optional()),
     interval: core.serialization.string(),
+    intervalCount: core.serialization.property("interval_count", core.serialization.number().optional()),
     isInitial: core.serialization.property("is_initial", core.serialization.boolean()),
     latestInvoice: core.serialization.property("latest_invoice", InvoiceResponseData.optional()),
     pauseBehavior: core.serialization.property("pause_behavior", BillingSubscriptionPauseBehavior.optional()),
@@ -51,6 +52,7 @@ export declare namespace CompanyBillingEntitySubscriptionResponseData {
         discounts: BillingSubscriptionDiscountView.Raw[];
         expired_at?: string | null;
         interval: string;
+        interval_count?: number | null;
         is_initial: boolean;
         latest_invoice?: InvoiceResponseData.Raw | null;
         pause_behavior?: BillingSubscriptionPauseBehavior.Raw | null;

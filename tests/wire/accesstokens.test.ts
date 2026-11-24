@@ -20,6 +20,7 @@ describe("AccesstokensClient", () => {
                 resource_type: "company",
                 token: "token",
                 updated_at: "2024-01-15T09:30:00Z",
+                user_id: "user_id",
             },
             params: { key: "value" },
         };
@@ -49,6 +50,7 @@ describe("AccesstokensClient", () => {
                 resourceType: "company",
                 token: "token",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                userId: "user_id",
             },
             params: {
                 key: "value",

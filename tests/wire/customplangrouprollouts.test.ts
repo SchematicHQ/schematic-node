@@ -304,6 +304,7 @@ describe("CustomplangrouprolloutsClient", () => {
                 name: "name",
                 original_plan_id: "original_plan_id",
                 plan_type: "plan",
+                renewal_destination: { billing_period: "monthly", plan_id: "plan_id" },
                 renewal_policy: "auto_renew",
                 status: "published",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -334,6 +335,10 @@ describe("CustomplangrouprolloutsClient", () => {
                 name: "name",
                 originalPlanId: "original_plan_id",
                 planType: "plan",
+                renewalDestination: {
+                    billingPeriod: "monthly",
+                    planId: "plan_id",
+                },
                 renewalPolicy: "auto_renew",
                 status: "published",
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),

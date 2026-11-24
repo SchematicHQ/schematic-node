@@ -10,6 +10,8 @@ export interface CompanySubscriptionResponseData {
     discounts: Schematic.BillingSubscriptionDiscountView[];
     expiredAt?: Date;
     interval: string;
+    /** With interval, the subscription's billing period: 3 with month is quarterly. Read from the subscription's line items, since interval alone is month for monthly and quarterly alike. */
+    intervalCount?: number;
     isInitial: boolean;
     latestInvoice?: Schematic.InvoiceResponseData;
     pauseBehavior?: Schematic.BillingSubscriptionPauseBehavior;

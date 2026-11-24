@@ -18,6 +18,10 @@ export const ScheduledCheckoutResponseData: core.serialization.ObjectSchema<
     fromPlanId: core.serialization.property("from_plan_id", core.serialization.string()),
     id: core.serialization.string(),
     scheduledInterval: core.serialization.property("scheduled_interval", core.serialization.string().optional()),
+    scheduledIntervalCount: core.serialization.property(
+        "scheduled_interval_count",
+        core.serialization.number().optional(),
+    ),
     scheduledPrice: core.serialization.property("scheduled_price", core.serialization.number().optional()),
     startedAt: core.serialization.property("started_at", core.serialization.date().optional()),
     status: ScheduledCheckoutStatus,
@@ -36,6 +40,7 @@ export declare namespace ScheduledCheckoutResponseData {
         from_plan_id: string;
         id: string;
         scheduled_interval?: string | null;
+        scheduled_interval_count?: number | null;
         scheduled_price?: number | null;
         started_at?: string | null;
         status: ScheduledCheckoutStatus.Raw;

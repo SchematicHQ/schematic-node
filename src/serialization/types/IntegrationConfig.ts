@@ -8,6 +8,7 @@ import { MetronomeIntegrationConfig } from "./MetronomeIntegrationConfig";
 import { OrbIntegrationConfig } from "./OrbIntegrationConfig";
 import { StripeIntegrationConfig } from "./StripeIntegrationConfig";
 import { WorkOsIntegrationConfig } from "./WorkOsIntegrationConfig";
+import { ZuoraIntegrationConfig } from "./ZuoraIntegrationConfig";
 
 export const IntegrationConfig: core.serialization.Schema<
     serializers.IntegrationConfig.Raw,
@@ -19,6 +20,7 @@ export const IntegrationConfig: core.serialization.Schema<
         orb: OrbIntegrationConfig,
         stripe: StripeIntegrationConfig,
         workos: WorkOsIntegrationConfig,
+        zuora: ZuoraIntegrationConfig,
     })
     .transform<Schematic.IntegrationConfig>({
         transform: (value) => value,
@@ -31,7 +33,8 @@ export declare namespace IntegrationConfig {
         | IntegrationConfig.Metronome
         | IntegrationConfig.Orb
         | IntegrationConfig.Stripe
-        | IntegrationConfig.Workos;
+        | IntegrationConfig.Workos
+        | IntegrationConfig.Zuora;
 
     export interface Clerk extends ClerkIntegrationConfig.Raw {
         type: "clerk";
@@ -51,5 +54,9 @@ export declare namespace IntegrationConfig {
 
     export interface Workos extends WorkOsIntegrationConfig.Raw {
         type: "workos";
+    }
+
+    export interface Zuora extends ZuoraIntegrationConfig.Raw {
+        type: "zuora";
     }
 }

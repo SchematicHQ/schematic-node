@@ -876,6 +876,7 @@ export class AccountsClient {
      *         actorType: "api_key",
      *         companyId: "company_id",
      *         endTime: new Date("2024-01-15T09:30:00.000Z"),
+     *         endUserId: "end_user_id",
      *         environmentId: "environment_id",
      *         q: "q",
      *         startTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -894,7 +895,7 @@ export class AccountsClient {
         request: Schematic.ListAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.ListAuditLogsResponse>> {
-        const { actorType, companyId, endTime, environmentId, q, startTime, limit, offset } = request;
+        const { actorType, companyId, endTime, endUserId, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             actor_type:
                 actorType != null
@@ -902,6 +903,7 @@ export class AccountsClient {
                     : undefined,
             company_id: companyId,
             end_time: endTime != null ? endTime?.toISOString() : undefined,
+            end_user_id: endUserId,
             environment_id: environmentId,
             q,
             start_time: startTime != null ? startTime?.toISOString() : undefined,
@@ -1151,6 +1153,7 @@ export class AccountsClient {
      *         actorType: "api_key",
      *         companyId: "company_id",
      *         endTime: new Date("2024-01-15T09:30:00.000Z"),
+     *         endUserId: "end_user_id",
      *         environmentId: "environment_id",
      *         q: "q",
      *         startTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -1169,7 +1172,7 @@ export class AccountsClient {
         request: Schematic.CountAuditLogsRequest = {},
         requestOptions?: AccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Schematic.CountAuditLogsResponse>> {
-        const { actorType, companyId, endTime, environmentId, q, startTime, limit, offset } = request;
+        const { actorType, companyId, endTime, endUserId, environmentId, q, startTime, limit, offset } = request;
         const _queryParams: Record<string, unknown> = {
             actor_type:
                 actorType != null
@@ -1177,6 +1180,7 @@ export class AccountsClient {
                     : undefined,
             company_id: companyId,
             end_time: endTime != null ? endTime?.toISOString() : undefined,
+            end_user_id: endUserId,
             environment_id: environmentId,
             q,
             start_time: startTime != null ? startTime?.toISOString() : undefined,

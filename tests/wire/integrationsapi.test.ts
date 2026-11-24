@@ -1949,4 +1949,110 @@ describe("IntegrationsapiClient", () => {
             return await client.integrationsapi.uninstallIntegration("integration_id");
         }).rejects.toThrow(Schematic.InternalServerError);
     });
+
+    test("getZuoraConnectionHealth (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: { checked_at: "2024-01-15T09:30:00Z", healthy: true, message: "message" },
+            params: { key: "value" },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/zuora/health")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.integrationsapi.getZuoraConnectionHealth();
+        expect(response).toEqual({
+            data: {
+                checkedAt: new Date("2024-01-15T09:30:00.000Z"),
+                healthy: true,
+                message: "message",
+            },
+            params: {
+                key: "value",
+            },
+        });
+    });
+
+    test("getZuoraConnectionHealth (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/zuora/health")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getZuoraConnectionHealth();
+        }).rejects.toThrow(Schematic.UnauthorizedError);
+    });
+
+    test("getZuoraConnectionHealth (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/zuora/health")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getZuoraConnectionHealth();
+        }).rejects.toThrow(Schematic.ForbiddenError);
+    });
+
+    test("getZuoraConnectionHealth (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/zuora/health")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getZuoraConnectionHealth();
+        }).rejects.toThrow(Schematic.NotFoundError);
+    });
+
+    test("getZuoraConnectionHealth (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new SchematicClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { error: "error" };
+
+        server
+            .mockEndpoint()
+            .get("/integrations/zuora/health")
+            .respondWith()
+            .statusCode(500)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.integrationsapi.getZuoraConnectionHealth();
+        }).rejects.toThrow(Schematic.InternalServerError);
+    });
 });

@@ -19,5 +19,7 @@ export interface PreviewSubscriptionChangeResponseData {
     proration: number;
     scheduledChangeTime?: Date;
     trialEnd?: Date;
+    /** Features whose usage so far this billing period is not billed if this change is made, because the new plan does not charge for them and the billing period continues. */
+    unbilledUsageFeatureIds: string[];
     usageViolations: Schematic.FeatureUsageResponseData[];
 }

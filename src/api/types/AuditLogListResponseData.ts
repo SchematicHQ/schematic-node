@@ -8,6 +8,10 @@ export interface AuditLogListResponseData {
     apiKeyId?: string;
     company?: Schematic.AuditLogCompanyResponseData;
     companyId?: string;
+    /** The user of your app the request's temporary access token was issued for. Absent when the token named no user or the user has since been deleted. */
+    endUser?: Schematic.AuditLogEndUserResponseData;
+    /** The ID of the user of your app the request's temporary access token was issued for */
+    endUserId?: string;
     endedAt?: Date;
     environment?: Schematic.EnvironmentResponseData;
     environmentId?: string;

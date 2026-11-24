@@ -19,6 +19,7 @@ export const IssueTemporaryAccessTokenResponseData: core.serialization.ObjectSch
     resourceType: core.serialization.property("resource_type", TemporaryAccessTokenResourceType),
     token: core.serialization.string(),
     updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+    userId: core.serialization.property("user_id", core.serialization.string().optional()),
 });
 
 export declare namespace IssueTemporaryAccessTokenResponseData {
@@ -32,5 +33,6 @@ export declare namespace IssueTemporaryAccessTokenResponseData {
         resource_type: TemporaryAccessTokenResourceType.Raw;
         token: string;
         updated_at: string;
+        user_id?: string | null;
     }
 }

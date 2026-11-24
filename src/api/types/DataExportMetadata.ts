@@ -5,8 +5,10 @@ import type * as Schematic from "../index";
 export type DataExportMetadata =
     | Schematic.DataExportMetadata.AuditLog
     | Schematic.DataExportMetadata.CompanyFeatureUsage
+    | Schematic.DataExportMetadata.CreditBalance
     | Schematic.DataExportMetadata.CreditLedger
-    | Schematic.DataExportMetadata.Event;
+    | Schematic.DataExportMetadata.Event
+    | Schematic.DataExportMetadata.User;
 
 export namespace DataExportMetadata {
     export interface AuditLog extends Schematic.AuditLogExportMetadata {
@@ -17,11 +19,19 @@ export namespace DataExportMetadata {
         exportType: "company-feature-usage";
     }
 
+    export interface CreditBalance extends Schematic.CreditBalanceExportMetadata {
+        exportType: "credit-balance";
+    }
+
     export interface CreditLedger extends Schematic.CreditLedgerExportMetadata {
         exportType: "credit-ledger";
     }
 
     export interface Event extends Schematic.EventExportMetadata {
         exportType: "event";
+    }
+
+    export interface User extends Schematic.UserExportMetadata {
+        exportType: "user";
     }
 }

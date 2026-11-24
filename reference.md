@@ -374,6 +374,7 @@ await client.accounts.listAuditLogs({
     actorType: "api_key",
     companyId: "company_id",
     endTime: new Date("2024-01-15T09:30:00.000Z"),
+    endUserId: "end_user_id",
     environmentId: "environment_id",
     q: "q",
     startTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -481,6 +482,7 @@ await client.accounts.countAuditLogs({
     actorType: "api_key",
     companyId: "company_id",
     endTime: new Date("2024-01-15T09:30:00.000Z"),
+    endUserId: "end_user_id",
     environmentId: "environment_id",
     q: "q",
     startTime: new Date("2024-01-15T09:30:00.000Z"),
@@ -13801,6 +13803,113 @@ await client.events.getEvent("event_id");
 </dl>
 </details>
 
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">getInferenceCost</a>({ ...params }) -> Schematic.GetInferenceCostResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.events.getInferenceCost({
+    endTime: new Date("2024-01-15T09:30:00.000Z"),
+    startTime: new Date("2024-01-15T09:30:00.000Z")
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.GetInferenceCostRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">listInferenceCostRates</a>({ ...params }) -> Schematic.ListInferenceCostRatesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.events.listInferenceCostRates({
+    provider: "provider",
+    responseModel: "response_model",
+    scope: "account",
+    limit: 1000000,
+    offset: 1000000
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Schematic.ListInferenceCostRatesRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EventsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">listAccountInferenceCostRates</a>({ ...params }) -> Schematic.ListAccountInferenceCostRatesResponse</code></summary>
 <dl>
 <dd>
@@ -16156,6 +16265,47 @@ await client.integrationsapi.uninstallIntegration("integration_id");
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `IntegrationsapiClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.integrationsapi.<a href="/src/api/resources/integrationsapi/client/Client.ts">getZuoraConnectionHealth</a>() -> Schematic.GetZuoraConnectionHealthResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.integrationsapi.getZuoraConnectionHealth();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
 
 <dl>
 <dd>

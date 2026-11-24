@@ -7,7 +7,8 @@ export type IntegrationConfig =
     | Schematic.IntegrationConfig.Metronome
     | Schematic.IntegrationConfig.Orb
     | Schematic.IntegrationConfig.Stripe
-    | Schematic.IntegrationConfig.Workos;
+    | Schematic.IntegrationConfig.Workos
+    | Schematic.IntegrationConfig.Zuora;
 
 export namespace IntegrationConfig {
     export interface Clerk extends Schematic.ClerkIntegrationConfig {
@@ -28,5 +29,9 @@ export namespace IntegrationConfig {
 
     export interface Workos extends Schematic.WorkOsIntegrationConfig {
         type: "workos";
+    }
+
+    export interface Zuora extends Schematic.ZuoraIntegrationConfig {
+        type: "zuora";
     }
 }

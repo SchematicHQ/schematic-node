@@ -1,6 +1,6 @@
 {
     "name": "@schematichq/schematic-typescript-node",
-    "version": "1.6.11",
+    "version": "1.6.12",
     "private": false,
     "repository": {
         "type": "git",
@@ -67,11 +67,6 @@
         "node": ">=18.0.0"
     },
     "sideEffects": false,
-    "license": "MIT",
-    "resolutions": {
-        "sharp": "^0.35.4",
-        "undici": "7.30.1"
-    },
     "files": [
         "dist/**/*.js",
         "dist/**/*.d.ts",
@@ -79,5 +74,10 @@
         "!dist/**/*.js.map",
         "!dist/**/*.test.*",
         "README.md"
-    ]
+    ],
+    "license": "MIT",
+    "resolutions": {
+        "sharp": "^0.35.4",
+        "undici": "7.30.1"
+    }
 }
