@@ -789,6 +789,16 @@ const client = new SchematicClient({
 });
 ```
 
+### Readiness
+
+`isReady()` resolves true when the client can serve flag checks, for use in a readiness probe. In offline mode it resolves true. When flag checks are evaluated from the DataStream cache and the DataStream is live (the WebSocket is connected, or in replicator mode the replicator reports ready), it resolves true without a network call. Otherwise it calls the Schematic API to verify the API key, with a 5-second timeout and no retries, so call it from a probe rather than on every request. It never rejects; any error resolves to false.
+
+```ts
+app.get("/readyz", async (_req, res) => {
+    res.sendStatus((await client.isReady()) ? 200 : 503);
+});
+```
+
 ## Replicator Mode
 
 Replicator mode is designed for environments where a separate process (the replicator) manages the WebSocket connection and populates a shared cache. The SDK reads from that cache and evaluates flags locally without establishing its own WebSocket connection.

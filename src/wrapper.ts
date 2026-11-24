@@ -1061,6 +1061,33 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
+     * Reports whether the client loaded correctly and can serve flag checks,
+     * for use as a readiness probe. Never rejects; any error resolves to false.
+     *
+     * - Offline mode: resolves true, since flag checks serve defaults by design.
+     * - DataStream: when flag checks are being evaluated from the DataStream
+     *   cache and the DataStream is live (the WebSocket is connected, or in
+     *   replicator mode the replicator reports ready), resolves true without a
+     *   network call.
+     * - Otherwise flag checks go to the Schematic API, so this calls `GET /whoami`
+     *   to verify the API key and resolves true on success. That request uses a
+     *   5-second timeout and no retries, whatever the client is configured with.
+     *   Each call makes one network request, so call it from a probe, not on
+     *   every request.
+     */
+    async isReady(): Promise<boolean> {
+        if (this.offline) return true;
+        if (this.useDataStreamCache() && this.datastreamClient!.isConnected()) return true;
+        try {
+            await this.accounts.getWhoAmI({ maxRetries: 0, timeoutInSeconds: 5 });
+            return true;
+        } catch (err) {
+            this.logger.debug(`Readiness check failed: ${err}`);
+            return false;
+        }
+    }
+
+    /**
      * Gracefully shuts down the client by stopping the event buffer, the
      * reservation sweeper, and the DataStream client.
      *

@@ -6,6 +6,7 @@ import {
     SHUTDOWN_DRAIN_TIMEOUT_MS,
 } from "../../src/credits";
 import type { CheckFlagWithEntitlementResponse } from "../../src/wrapper";
+import { SchematicError, SchematicTimeoutError } from "../../src/errors";
 
 // Mock the features.checkFlag API call
 const mockCheckFlag = jest.fn();
@@ -13,6 +14,7 @@ const mockCheckAndReserveFlag = jest.fn();
 const mockAcquireCreditLease = jest.fn();
 const mockReleaseCreditLease = jest.fn();
 const mockReleaseCreditReservation = jest.fn();
+const mockGetWhoAmI = jest.fn();
 
 jest.mock("../../src/Client", () => {
     class MockBaseClient {
@@ -30,6 +32,9 @@ jest.mock("../../src/Client", () => {
             releaseCreditReservation: mockReleaseCreditReservation,
         };
         events = {};
+        accounts = {
+            getWhoAmI: mockGetWhoAmI,
+        };
     }
     return { SchematicClient: MockBaseClient };
 });
@@ -1169,6 +1174,90 @@ describe("SchematicClient wrapper - server-mode credit reservations", () => {
         const expiresAt = (mockCheckAndReserveFlag.mock.calls[0][1].expiresAt as Date).getTime();
         expect(expiresAt).toBeGreaterThanOrEqual(before + ttl);
         expect(expiresAt).toBeLessThanOrEqual(after + ttl);
+
+        await client.close();
+    });
+});
+
+describe("SchematicClient wrapper - isReady", () => {
+    const mockLogger = {
+        error: jest.fn(),
+        warn: jest.fn(),
+        info: jest.fn(),
+        debug: jest.fn(),
+    };
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        mockGetWhoAmI.mockReset();
+        mockDataStream.isCacheReady.mockReturnValue(true);
+    });
+
+    it("resolves true in offline mode without a network call", async () => {
+        const client = new SchematicClient({ offline: true, logger: mockLogger });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).not.toHaveBeenCalled();
+
+        await client.close();
+    });
+
+    it("resolves true without a network call when flag checks use the DataStream cache", async () => {
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger, useDataStream: true });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).not.toHaveBeenCalled();
+
+        await client.close();
+    });
+
+    it("calls whoami when the DataStream WebSocket is not connected", async () => {
+        mockDataStream.isConnected.mockReturnValue(false);
+        mockGetWhoAmI.mockResolvedValue({ data: {} });
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger, useDataStream: true });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).toHaveBeenCalledTimes(1);
+
+        await client.close();
+    });
+
+    it("calls whoami when the DataStream cache is not ready", async () => {
+        mockDataStream.isCacheReady.mockReturnValue(false);
+        mockGetWhoAmI.mockResolvedValue({ data: {} });
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger, useDataStream: true });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).toHaveBeenCalledTimes(1);
+
+        await client.close();
+    });
+
+    it("resolves true when whoami succeeds in API mode", async () => {
+        mockGetWhoAmI.mockResolvedValue({ data: {} });
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).toHaveBeenCalledTimes(1);
+        expect(mockGetWhoAmI).toHaveBeenCalledWith({ maxRetries: 0, timeoutInSeconds: 5 });
+
+        await client.close();
+    });
+
+    it("resolves false when whoami fails", async () => {
+        mockGetWhoAmI.mockRejectedValue(new SchematicError({ message: "Unauthorized", statusCode: 401 }));
+        const client = new SchematicClient({ apiKey: "bad-key", logger: mockLogger });
+
+        await expect(client.isReady()).resolves.toBe(false);
+
+        await client.close();
+    });
+
+    it("resolves false when whoami times out", async () => {
+        mockGetWhoAmI.mockRejectedValue(new SchematicTimeoutError("Timeout exceeded when calling GET /whoami."));
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger });
+
+        await expect(client.isReady()).resolves.toBe(false);
 
         await client.close();
     });
