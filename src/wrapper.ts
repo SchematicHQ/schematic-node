@@ -1061,28 +1061,40 @@ export class SchematicClient extends BaseClient {
     }
 
     /**
-     * Reports whether the client loaded correctly and can serve flag checks,
-     * for use as a readiness probe. Never rejects; any error resolves to false.
+     * Reports whether the client started correctly and can serve flag checks.
+     * Use it as a start-up gate or a Kubernetes `startupProbe`, with the probe's
+     * `timeoutSeconds` above 5. Don't use it for liveness or ongoing readiness:
+     * in API mode it depends on Schematic's API, so an outage would pull every
+     * pod while flag checks keep serving defaults or cached values. Never
+     * rejects; any error resolves to false.
      *
      * - Offline mode: resolves true, since flag checks serve defaults by design.
-     * - DataStream: when flag checks are being evaluated from the DataStream
-     *   cache and the DataStream is live (the WebSocket is connected, or in
-     *   replicator mode the replicator reports ready), resolves true without a
-     *   network call.
-     * - Otherwise flag checks go to the Schematic API, so this calls `GET /whoami`
-     *   to verify the API key and resolves true on success. That request uses a
-     *   5-second timeout and no retries, whatever the client is configured with.
-     *   Each call makes one network request, so call it from a probe, not on
-     *   every request.
+     * - DataStream: when flag checks are evaluated from the DataStream cache,
+     *   the DataStream is ready (the WebSocket is connected and has loaded flags,
+     *   or in replicator mode the replicator reports ready) and the rules engine
+     *   loaded, resolves true without a network call.
+     * - Otherwise this calls `GET /whoami` to verify the API key and resolves true
+     *   on success. The call is bounded at 5 seconds with no retries, whatever
+     *   the client is configured with. Each call makes one network request.
      */
     async isReady(): Promise<boolean> {
         if (this.offline) return true;
-        if (this.useDataStreamCache() && this.datastreamClient!.isConnected()) return true;
+        if (
+            this.useDataStreamCache() &&
+            this.datastreamClient!.isReady() &&
+            this.datastreamClient!.getRulesEngine().isInitialized()
+        ) {
+            return true;
+        }
         try {
-            await this.accounts.getWhoAmI({ maxRetries: 0, timeoutInSeconds: 5 });
+            await this.accounts.getWhoAmI({
+                maxRetries: 0,
+                timeoutInSeconds: 5,
+                abortSignal: AbortSignal.timeout(5000),
+            });
             return true;
         } catch (err) {
-            this.logger.debug(`Readiness check failed: ${err}`);
+            this.logger.warn(`Schematic readiness check failed: ${err}`);
             return false;
         }
     }

@@ -45,6 +45,7 @@ const mockDataStream = {
     close: jest.fn(),
     isConnected: jest.fn().mockReturnValue(true),
     isCacheReady: jest.fn().mockReturnValue(true),
+    isReady: jest.fn().mockReturnValue(true),
     checkFlag: jest.fn(),
     updateCompanyMetrics: jest.fn().mockResolvedValue(undefined),
     getFlag: jest.fn(),
@@ -1191,6 +1192,8 @@ describe("SchematicClient wrapper - isReady", () => {
         jest.clearAllMocks();
         mockGetWhoAmI.mockReset();
         mockDataStream.isCacheReady.mockReturnValue(true);
+        mockDataStream.isReady.mockReturnValue(true);
+        mockDataStream.getRulesEngine.mockReturnValue({ isInitialized: () => true });
     });
 
     it("resolves true in offline mode without a network call", async () => {
@@ -1211,8 +1214,20 @@ describe("SchematicClient wrapper - isReady", () => {
         await client.close();
     });
 
-    it("calls whoami when the DataStream WebSocket is not connected", async () => {
-        mockDataStream.isConnected.mockReturnValue(false);
+    it("calls whoami when the DataStream is connected but has not loaded flags", async () => {
+        mockDataStream.isConnected.mockReturnValue(true);
+        mockDataStream.isReady.mockReturnValue(false);
+        mockGetWhoAmI.mockResolvedValue({ data: {} });
+        const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger, useDataStream: true });
+
+        await expect(client.isReady()).resolves.toBe(true);
+        expect(mockGetWhoAmI).toHaveBeenCalledTimes(1);
+
+        await client.close();
+    });
+
+    it("calls whoami when the rules engine failed to load", async () => {
+        mockDataStream.getRulesEngine.mockReturnValue({ isInitialized: () => false });
         mockGetWhoAmI.mockResolvedValue({ data: {} });
         const client = new SchematicClient({ apiKey: "test-api-key", logger: mockLogger, useDataStream: true });
 
@@ -1239,7 +1254,11 @@ describe("SchematicClient wrapper - isReady", () => {
 
         await expect(client.isReady()).resolves.toBe(true);
         expect(mockGetWhoAmI).toHaveBeenCalledTimes(1);
-        expect(mockGetWhoAmI).toHaveBeenCalledWith({ maxRetries: 0, timeoutInSeconds: 5 });
+        expect(mockGetWhoAmI).toHaveBeenCalledWith({
+            maxRetries: 0,
+            timeoutInSeconds: 5,
+            abortSignal: expect.any(AbortSignal),
+        });
 
         await client.close();
     });
@@ -1249,6 +1268,7 @@ describe("SchematicClient wrapper - isReady", () => {
         const client = new SchematicClient({ apiKey: "bad-key", logger: mockLogger });
 
         await expect(client.isReady()).resolves.toBe(false);
+        expect(mockLogger.warn).toHaveBeenCalledWith(expect.stringContaining("readiness check failed"));
 
         await client.close();
     });

@@ -642,6 +642,18 @@ export class DataStreamClient extends LazyEmitter {
   }
 
   /**
+   * IsReady returns whether the DataStream has its data: in replicator mode,
+   * whether the replicator reports ready; otherwise, whether the WebSocket is
+   * connected and has finished loading flags.
+   */
+  public isReady(): boolean {
+    if (this.replicatorMode) {
+      return this.isReplicatorReady();
+    }
+    return this.wsClient?.isReady() ?? false;
+  }
+
+  /**
    * IsCacheReady returns whether flag checks may be evaluated from the cache.
    *
    * In replicator mode this is the readiness from the replicator's last

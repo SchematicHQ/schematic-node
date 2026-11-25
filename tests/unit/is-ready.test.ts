@@ -88,11 +88,27 @@ describe("SchematicClient isReady over HTTP", () => {
         await client.close();
     }, 15000);
 
+    it("resolves false after 5 seconds when whoami stalls mid-body", async () => {
+        handler = (_req, res) => {
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.write(whoAmIBody.slice(0, 10));
+        };
+        const client = new SchematicClient({ apiKey: "sch_test", basePath, logger, timeoutMs: 60000 });
+
+        const start = Date.now();
+        await expect(client.isReady()).resolves.toBe(false);
+        const elapsed = Date.now() - start;
+        expect(elapsed).toBeGreaterThanOrEqual(4500);
+        expect(elapsed).toBeLessThan(8000);
+
+        await client.close();
+    }, 15000);
+
     it("resolves false when the API is unreachable", async () => {
         server.closeAllConnections();
         await new Promise<void>((resolve) => server.close(() => resolve()));
         server = http.createServer();
-        const client = new SchematicClient({ apiKey: "sch_test", basePath, logger, timeoutMs: 1000 });
+        const client = new SchematicClient({ apiKey: "sch_test", basePath, logger });
 
         await expect(client.isReady()).resolves.toBe(false);
 

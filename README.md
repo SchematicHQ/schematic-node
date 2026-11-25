@@ -789,14 +789,26 @@ const client = new SchematicClient({
 });
 ```
 
-### Readiness
+### Start-up check
 
-`isReady()` resolves true when the client can serve flag checks, for use in a readiness probe. In offline mode it resolves true. When flag checks are evaluated from the DataStream cache and the DataStream is live (the WebSocket is connected, or in replicator mode the replicator reports ready), it resolves true without a network call. Otherwise it calls the Schematic API to verify the API key, with a 5-second timeout and no retries, so call it from a probe rather than on every request. It never rejects; any error resolves to false.
+`isReady()` resolves true once the client can serve flag checks. Use it as a start-up gate or a Kubernetes `startupProbe`, with the probe's `timeoutSeconds` above 5. Don't use it for liveness or ongoing readiness: in API mode it calls Schematic's API, so an outage would pull every pod while flag checks keep serving defaults or cached values.
+
+In offline mode it resolves true. When flag checks are evaluated from the DataStream cache, the DataStream has loaded its data (or in replicator mode the replicator reports ready) and the rules engine loaded, it resolves true without a network call. Otherwise it calls the Schematic API to verify the API key, bounded at 5 seconds with no retries. It never rejects; any error resolves to false.
 
 ```ts
-app.get("/readyz", async (_req, res) => {
+app.get("/startupz", async (_req, res) => {
     res.sendStatus((await client.isReady()) ? 200 : 503);
 });
+```
+
+```yaml
+startupProbe:
+  httpGet:
+    path: /startupz
+    port: 8080
+  timeoutSeconds: 6
+  periodSeconds: 5
+  failureThreshold: 24
 ```
 
 ## Replicator Mode
