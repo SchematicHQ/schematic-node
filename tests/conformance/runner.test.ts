@@ -376,6 +376,7 @@ async function runCheck(
     const engineResults = [...(op.engine ?? [])];
     const engineCalls: RecordedEngineCall[] = [];
     const engine = {
+        isInitialized: () => true,
         checkFlagWithOptions: async (
             _flag: unknown,
             evalCompany: { creditBalances?: Record<string, number> },

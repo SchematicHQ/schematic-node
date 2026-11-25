@@ -371,6 +371,7 @@ function makeCheckDeps(leaseStore: ILeaseStore, reservations: IReservationStore)
         config: { defaultReservationTTL: 60_000 },
     });
     const engine = {
+        isInitialized: () => true,
         checkFlagWithOptions: jest.fn().mockResolvedValue({
             value: true,
             reason: "probe",
@@ -488,6 +489,7 @@ describe.each(backends)("checkWithLease crash window — %s stores", (_name, mak
             config: { defaultReservationTTL: 60_000 },
         });
         const engine = {
+            isInitialized: () => true,
             checkFlagWithOptions: jest.fn().mockResolvedValue({
                 value: true,
                 reason: "probe",

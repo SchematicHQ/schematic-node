@@ -938,6 +938,17 @@ describe('DataStreamClient', () => {
     }
   });
 
+  test('checkFlag throws without reading the cache when the rules engine is not initialized', async () => {
+    await client.start();
+    const getFlag = jest.spyOn(client, 'getFlag');
+
+    await expect(client.checkFlag({ company: { name: 'Test Company' } }, 'test-flag')).rejects.toThrow(
+      'Rules engine not initialized',
+    );
+    expect(getFlag).not.toHaveBeenCalled();
+    expect(mockRulesEngineInstance.checkFlagWithOptions).not.toHaveBeenCalled();
+  });
+
   test('should use rules engine version key for cache keys in non-replicator mode', async () => {
     // Start the client (non-replicator mode)
     await client.start();

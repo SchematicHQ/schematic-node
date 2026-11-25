@@ -121,6 +121,10 @@ export async function checkWithLease(
         return fallback();
     }
 
+    if (!datastream.getRulesEngine().isInitialized()) {
+        return fallback();
+    }
+
     let flag: api.RulesengineFlag | null = null;
     try {
         flag = await datastream.getFlag(key);
