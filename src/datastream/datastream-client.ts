@@ -94,6 +94,7 @@ export class DataStreamClient extends LazyEmitter {
   private readonly replicatorHealthURL?: string;
   private readonly replicatorHealthCheck: number;
   private replicatorReady = false;
+  private warnedRulesEngineUnavailable = false;
   private replicatorHealthInterval?: NodeJS.Timeout;
   private replicatorCacheVersion?: string;
 
@@ -493,6 +494,14 @@ export class DataStreamClient extends LazyEmitter {
     flagKey: string,
     options?: CheckFlagOptions
   ): Promise<Schematic.RulesengineCheckFlagResult> {
+    if (!this.rulesEngine.isInitialized()) {
+      if (!this.warnedRulesEngineUnavailable) {
+        this.warnedRulesEngineUnavailable = true;
+        this.logger.warn('Rules engine not initialized, flag checks will fall back to the API');
+      }
+      throw new Error('Rules engine not initialized');
+    }
+
     // Get flag first - return error if not found
     const flag = await this.getFlag(flagKey);
     if (!flag) {
@@ -1449,43 +1458,29 @@ export class DataStreamClient extends LazyEmitter {
     const defaultValue = flag.defaultValue ?? false;
 
     try {
-      // Use rules engine if initialized
-      if (this.rulesEngine.isInitialized()) {
-        this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
+      this.logger.debug(`Evaluating flag with rules engine: ${JSON.stringify({ flagId: flag.id, flagRules: flag.rules?.length || 0, companyId: company?.id, userId: user?.id })}`);
 
-        const result = await this.rulesEngine.checkFlagWithOptions(flag, company, user, options);
-        this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
+      const result = await this.rulesEngine.checkFlagWithOptions(flag, company, user, options);
+      this.logger.debug(`Rules engine evaluation result: ${JSON.stringify(result)}`);
 
-        return {
-          flagKey: flag.key,
-          value: result.value ?? defaultValue,
-          reason: result.reason || 'RULES_ENGINE_EVALUATION',
-          companyId: company?.id,
-          userId: user?.id,
-          flagId: flag.id,
-          ruleId: result.ruleId,
-          ruleType: result.ruleType,
-          entitlement: result.entitlement
-            ? {
-                ...result.entitlement,
-                metricResetAt: result.entitlement.metricResetAt
-                  ? new Date(result.entitlement.metricResetAt)
-                  : undefined,
-              }
-            : undefined,
-        };
-      } else {
-        // Fallback to default value if rules engine not available
-        this.logger.warn('Rules engine not initialized, using default flag value');
-        return {
-          flagKey: flag.key,
-          value: defaultValue,
-          reason: 'RULES_ENGINE_UNAVAILABLE',
-          companyId: company?.id,
-          userId: user?.id,
-          flagId: flag.id,
-        };
-      }
+      return {
+        flagKey: flag.key,
+        value: result.value ?? defaultValue,
+        reason: result.reason || 'RULES_ENGINE_EVALUATION',
+        companyId: company?.id,
+        userId: user?.id,
+        flagId: flag.id,
+        ruleId: result.ruleId,
+        ruleType: result.ruleType,
+        entitlement: result.entitlement
+          ? {
+              ...result.entitlement,
+              metricResetAt: result.entitlement.metricResetAt
+                ? new Date(result.entitlement.metricResetAt)
+                : undefined,
+            }
+          : undefined,
+      };
     } catch (error) {
       this.logger.error(`Rules engine evaluation failed: ${error}`);
       // Fallback to default value on error

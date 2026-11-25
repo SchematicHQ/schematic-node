@@ -41,6 +41,7 @@ tests/unit/context-signing.json
 tests/unit/credits/
 tests/unit/datastream/datastream-client.test.ts
 tests/unit/datastream/redis-key-layout.test.ts
+tests/unit/datastream/rules-engine-unavailable.test.ts
 tests/unit/datastream/redis_key_layout.json
 tests/unit/datastream/merge.test.ts
 tests/unit/datastream/websocket-client.test.ts
